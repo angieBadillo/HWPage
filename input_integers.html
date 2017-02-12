@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+
+    <title>Form example 1</title>
+
+    <style>
+
+        body {background-color: rgba(245, 245, 220, 0.02);
+
+            width:500px;
+            margin:0px auto;
+            text-align:center;  }
+
+        input {text-align: right;}
+
+    </style>
+
+
+    <script>
+        function process() {
+
+            var number1 = document.forms["myform"].elements["num1"].value;
+
+            var number2 = document.forms["myform"].elements["num2"].value;
+
+            var number3 = document.forms["myform"].elements["num3"].value;
+
+            var numb1 = parseInt(number1);
+
+            var numb2 = parseInt(number2);
+
+            var numb3 = parseInt(number3);
+
+
+            var sum = numb1 + numb2 + numb3;
+            alert("The sum of the numbers is " + sum );
+
+            var product = numb1 * numb2 * numb3;
+            alert("The product of the numbers is " + product );
+
+            var average = sum / 3;
+            alert("The average of the numbers is " + average );
+
+            var largest = Math.max(numb1, numb2, numb3);
+            alert("The largest number is " + largest);
+
+            var smallest = Math.min(numb1, numb2, numb3);
+            alert("The smallest number is " + smallest);
+        }
+
+    </script>
+
+<body>
+
+<form name="myform">
+    <table>
+        <tr>
+            <td>First Number:</td>
+            <td><input type="text" name="num1" size="10"
+                       style="text-align: right;"></td>
+        </tr>
+        <tr>
+            <td>Second Number:</td>
+            <td><input type="text" name="num2" size="10"
+                       style="text-align: right;"></td>
+        </tr>
+        <tr>
+            <td>Third Number:</td>
+            <td><input type="text" name="num3" size="10"
+                       style="text-align: right;"></td>
+        </tr>
+    </table>
+    <br>
+    <input type="button" onclick="process()" value="SUBMIT">
+    <input type="reset" value="RESET">
+</form>
+
+</body>
+</html>
