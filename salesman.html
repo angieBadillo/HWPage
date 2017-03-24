@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <title>Salesperson</title>
+
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+
+    <script>
+
+        $( document ).tooltip();
+
+        function validInput(numinput){
+            if (isNaN(numinput) || numinput < 0){
+                return true;
+            }
+        }
+
+        function display(n1, n2){
+            document.getElementById(n1).value = (n2);
+        }
+
+        function multiply(id, n1, n2){
+            var total = (n1*n2).toFixed(2);
+            document.getElementById(id).value = (total);
+        }
+
+        function sales(){
+            var item1, item2, item3, item4, sold, earn;
+            var price1 = 239.9, price2 = 129.75, price3 = 99.95, price4 = 350.89;
+            item1 = parseInt(document.getElementById("num1").value);
+            item2 = parseInt(document.getElementById("num2").value);
+            item3 = parseInt(document.getElementById("num3").value);
+            item4 = parseInt(document.getElementById("num4").value);
+            if(validInput(item1) || validInput(item2) || validInput(item3) || validInput(item4)){
+                document.getElementById("errmsg").innerHTML = ("Type a valid number.");
+            }
+            else{
+                display("sold1", item1);
+                display("sold2", item2);
+                display("sold3", item3);
+                display("sold4", item4);
+                multiply("total1", item1, price1);
+                multiply("total2", item2, price2);
+                multiply("total3", item3, price3);
+                multiply("total4", item4, price4);
+                sold = ((item1 * price1) + (item2 * price2) + (item3 * price3) + (item4 * price4)).toFixed(2);
+                earn = (200 + ((sold * .09))).toFixed(2);
+                display("sold", sold);
+                display("earn", earn);
+            }
+        }
+    </script>
+    <style>
+
+
+        body {background-color: rgba(218, 218, 196, 0.04);}
+
+        .body { width: 580px;
+            margin: 0 auto;
+        }
+
+        input {text-align: right;}
+
+        textarea {
+            overflow: auto;
+            border: double;
+            color: rgba(3, 15, 56, 0.99);
+        }
+
+        table {width: 580px;}
+
+
+
+
+    </style>
+</head>
+
+<body onload="document.getElementById('num0').focus();">
+
+<section class="body">
+
+    <div id="wrapper" class="container">
+        <ul class="nav nav-pills" role="tablist">
+            <li><a href="studentGrades.html" >Part 1</a></li>
+            <li class="active"><a href="salesman.html" >Part 2</a></li>
+            <li><a href="HW3.html" >Part 3</a></li>
+            <li><a href="HW4.html" >Part 4</a></li>
+            <li><a href="HW5.html" >Part 5</a></li>
+            <li><a href="HW6.html" >Part 6</a></li>
+            <li><a href="HW7.html" >Extra Credit</a></li>
+        </ul>
+    </div>
+
+
+    <br><br>
+    <br><br>
+
+    <div class="form-group">
+        <label for="usr">Salesperson:</label>
+        <input type="text" class="form-control" id="usr" title="Please make sure that the salesperson's name is spelled correctly">
+    </div>
+
+    <div>
+
+        <br><br>
+
+
+        <form id="myform" name="myform">
+
+            <table>
+
+                <tr>
+                    <td>Item 1</td>
+                    <td><input type="text" id="num1"  size="10"></td>
+                </tr>
+                <tr>
+                    <td>Item 2</td>
+                    <td><input type="text" id="num2"  size="10"></td>
+                </tr>
+                <tr>
+                    <td>Item 3</td>
+                    <td><input type="text" id="num3"  size="10"></td>
+                </tr>
+                <tr>
+                    <td>Item 4</td>
+                    <td><input type="text" id="num4"  size="10"></td>
+                </tr>
+                <tr>
+                    <td id="errmsg" colspan="2"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="button" onclick="sales()" value="Submit">
+                        <input type="reset" value="RESET" onclick="document.getElementById('num0').focus();"><br><br>
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <br><br>
+    </div>
+        <div id="result">
+            <br>
+            <form name="myform2">
+                <table>
+                    <tr>
+                        <th>Item #</th>
+                        <th>Price $</th>
+                        <th>Units sold</th>
+                        <th>Total</th>
+                    </tr>
+                    <tr>
+                        <td>Item 1</td>
+                        <td>$239.99</td>
+                        <td><input type="text" id="sold1" size="20"></td>
+                        <td><input type="text" id="total1"  size="20"></td>
+                    </tr>
+                    <tr>
+                        <td>Item 2</td>
+                        <td>$129.95</td>
+                        <td><input type="text" id="sold2"  size="20"></td>
+                        <td><input type="text" id="total2"  size="20"></td>
+                    </tr>
+                    <tr>
+                        <td>Item 3</td>
+                        <td>$99.95</td>
+                        <td><input type="text" id="sold3"  size="20"></td>
+                        <td><input type="text" id="total3"  size="20"></td>
+                    </tr>
+                    <tr>
+                        <td>Item 4</td>
+                        <td>$350.89</td>
+                        <td><input type="text" id="sold4"  size="20"></td>
+                        <td><input type="text" id="total4"  size="20"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3"> Total amount sold:</td>
+                        <td><input type="text" id="sold"  size="20"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3"> Total weekly earnings:</td>
+                        <td><input type="text" id="earn"  size="20"></td>
+                    </tr>
+                </table>
+            </form>
+            <br>
+        </div>
+</section>
+</body>
+</html>
