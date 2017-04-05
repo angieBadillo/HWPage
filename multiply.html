@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Multiply</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <script>
+        var ans;
+
+        function userQuestion(){
+
+            var n1, n2;
+            n1 = Math.floor((Math.random() * 10));
+            n2 = Math.floor((Math.random() * 10));
+            ans = n1 * n2;
+            document.getElementById("question").innerHTML = ("How much is " + n1 + " times " + n2 + " ?");
+            document.getElementById("ans").value = ("<input type='hidden' name='ans' value='" + ans +"'>");
+            return ans;
+        }
+
+        function checkAnswer(comans){
+            userans = parseInt(document.getElementById("answer").value);
+
+            if (comans == userans){
+                var conf = confirm("Very good!, Would you like to continue?" );
+                if(conf){
+                    document.getElementById("answer").value = ("");
+                    userQuestion();
+                }
+            }else {
+                var conf = confirm("No. Please try again.");
+                if (conf) {
+                    document.getElementById("answer").value = ("");
+                }
+            }}
+    </script>
+    <style>
+
+        body {background-color: rgba(218, 218, 196, 0.04);
+            width: 580px;
+            margin: 0px auto;}
+
+
+        input {text-align: left;}
+
+        textarea {
+            padding: 5px;
+            overflow: auto;
+            border: double;
+            color: rgba(18, 56, 33, 0.99);
+        }
+
+        table {width: 580px;}
+
+    </style>
+</head>
+
+<body onload="userQuestion()">
+
+    <div id="wrapper" class="container">
+        <ul class="nav nav-pills" role="tablist">
+            <li><a href="studentGrades.html" >Part 1</a></li>
+            <li><a href="salesman.html " >Part 2</a></li>
+            <li><a href="creditStore.html" >Part 3</a></li>
+            <li><a href="palindrome.html" >Part 4</a></li>
+            <li><a href="temperature.html" >Part 5</a></li>
+            <li class="active"><a href="multiply.html" >Part 6</a></li>
+            <li><a href="craps.html"> Extra Credit</a></li>
+        </ul>
+    </div>
+
+    <br><br>
+    <br><br>
+
+    <div id="result">
+        <br><br>
+        <form>
+            <table>
+                <tr>
+                    <td><div id="question"></div></td>
+                    <td><input type="text" id="answer" size="20"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><div id="fail"></div></td>
+                </tr>
+                <tr>
+                    <td><span id="ans"></span></td>
+                    <td>
+                        <input type="button" onclick="checkAnswer(ans)" value="Submit">
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <br><br>
+    </div>
+
+</body>
+</html>

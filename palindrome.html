@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Palindrome</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <script>
+
+
+        $(document).ready(function(){
+            $("#flip").click(function(){
+                $("#panel").slideToggle("slow");
+            });
+        });
+
+        function validInput(input){
+            if(isNaN(input) || input < 0)
+                return true;
+            else
+                return false;
+         }
+
+        function validFiveDigits(n){
+             if(n.length != 5)
+                return true;
+             else
+                return false;
+         }
+
+        function validPairNum(a,b){
+            a = parseInt(a);
+            b = parseInt(b);
+
+            if(a == b)
+                return true;
+             else
+                return false;
+        }
+
+         function isPalindrome(){
+            var number, n1, n2, n4, n5;
+            number = document.getElementById("numpalin").value;
+
+            if (validInput(number)){
+                document.getElementById("msg").innerHTML = ("Please input only a number.");
+            }
+            else{
+
+                if (validFiveDigits(number)){
+                    document.getElementById("msg").innerHTML = ("Please input only FIVE digits.");
+                }
+                else{
+                    n1 = number.charAt(0);
+                    n2 = number.charAt(1);
+                    n4 = number.charAt(3);
+                    n5 = number.charAt(4);
+
+                 if (validPairNum(n1,n5) && validPairNum(n2,n4))
+                     document.getElementById("msg").innerHTML = ("This is a palindrome!");
+                 else
+                     document.getElementById("msg").innerHTML = ("This is not a palindrome.");
+                 }
+            }
+        }
+    </script>
+
+    <style>
+
+        body {background-color: rgba(218, 218, 196, 0.04);}
+
+        .body { width: 580px;
+            margin: 0px auto;
+
+        }
+
+        input {text-align: left;}
+
+        textarea {
+            padding: 5px;
+            overflow: auto;
+            border: double;
+            color: rgba(18, 56, 33, 0.99);
+        }
+
+        table {width: 580px;}
+
+
+        #flip {
+            padding: 5px;
+            text-align: center;
+            background-color: rgba(254, 254, 254, 0.95);
+            border: inset 3px #1d6846;
+
+        }
+
+        #panel{
+            padding: 5px;
+            text-align: left;
+            background-color: rgba(254, 254, 254, 0.95);
+            border: outset 3px #d1d1d1;
+            display: none;
+
+        }
+
+
+    </style>
+
+</head>
+<body onload="document.getElementById('num0').focus();">
+
+<section class="body">
+
+    <div id="wrapper" class="container">
+        <ul class="nav nav-pills" role="tablist">
+            <li><a href="studentGrades.html" >Part 1</a></li>
+            <li><a href="salesman.html " >Part 2</a></li>
+            <li><a href="creditStore.html" >Part 3</a></li>
+            <li class="active"><a href="palindrome.html" >Part 4</a></li>
+            <li><a href="temperature.html" >Part 5</a></li>
+            <li><a href="multiply.html" >Part 6</a></li>
+            <li><a href="craps.html" >Extra Credit</a></li>
+        </ul>
+    </div>
+
+    <br><br>
+    <br><br>
+
+    <div id="flip">Display the instruction</div>
+    <div id="panel">Input a five-digit integer (not starting with zero) to display if it is a palindrome, not a palindrome, or an input error.</div>
+
+
+    <br><br>
+    <br><br>
+
+
+    <div id="result" class="container-fluid">
+        <div class="row">
+        <br><br>
+
+        <form name="myform">
+
+            <div class="form-group has-success">
+                <label class="form-control-label" for="numpalin">Input the number</label>
+                <input type="text" class="form-control form-control-success" id="numpalin">
+            </div>
+
+            <table>
+                <tr>
+                    <td><div id="msg"></div></td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="button" class="btn btn-primary" onclick="isPalindrome()" value="Submit">
+                        <input type="reset" class="btn btn-primary" value="Reset" onclick="document.getElementById('num0').focus();"><br><br>
+                    </td>
+                </tr>
+            </table>
+
+
+        </form>
+        <br><br>
+    </div>
+    </div>
+</section>
+</body>
+</html>

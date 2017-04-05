@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>craps</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <script>
+
+
+        var gross = 20;
+
+        if ( !isNaN(gross) )
+
+            alert("inputted gross is a number");
+
+        else
+
+            alert("inputted gross is Not a number");
+
+
+        var points;
+
+        function roll() {
+            var die1, die2, sum;
+            die1 = Math.floor((Math.random() * 6) + 1);
+            die2 = Math.floor((Math.random() * 6) + 1);
+            sum = die1 + die2;
+            document.getElementById("die1").value = (die1);
+            document.getElementById("die2").value = (die2);
+            document.getElementById("sum").value = (sum);
+            return sum;
+
+        }
+
+
+        function savePoint(pnt){
+            document.getElementById("pnt").value = (pnt);
+            points = pnt;
+            return points;
+        }
+
+        function setPoint(){
+            return points;
+        }
+
+        function winner(sum){
+            switch (sum){
+                case 7:
+                case 11:
+                    return 1;
+                    break;
+                case 2:
+                case 3:
+                case 12:
+                    return 2;
+                    break;
+                case 4:
+                case 5:
+                case 6:
+                case 8:
+                case 9:
+                case 10:
+                    return 3;
+                    break;
+            }
+        }
+
+        function game(){
+            if(setPoint()){
+                console.log(setPoint());
+                var newPoint = roll();
+                var oldPoint = setPoint();
+                if(newPoint == setPoint()){
+                    document.getElementById("guide").innerHTML = ("Player Wins");
+                    savePoint("");
+                    document.getElementById("pnt").value = (newPoint);
+                    return;
+                }else if(newPoint == 7){
+                    document.getElementById("guide").innerHTML = ("House Wins");
+                    savePoint("");
+                    document.getElementById("pnt").value = (oldPoint);
+                    return;
+                }else{
+                    document.getElementById("guide").innerHTML = ("Roll Dice");
+                }
+            }else if(!setPoint()){
+                savePoint("");
+                var sum = roll();
+                if(winner(sum) == 1){
+                    document.getElementById("guide").innerHTML = ("Player Wins");
+                }
+                else if(winner(sum) == 2){
+                    document.getElementById("guide").innerHTML = ("Craps!! House Wins");
+                }
+                else if(winner(sum) == 3){
+                    savePoint(sum);
+                    document.getElementById("guide").innerHTML = ("Roll Dice");
+                }
+
+            }
+        }
+
+    </script>
+
+    <style>
+
+        body {background-color: rgba(218, 218, 196, 0.04);
+            width: 580px;
+            margin: 0px auto;}
+
+
+        input {text-align: left;}
+
+        textarea {
+            padding: 5px;
+            overflow: auto;
+            border: double;
+            color: rgba(18, 56, 33, 0.99);
+        }
+
+        table {width: 580px;}
+
+    </style>
+</head>
+<body onload="setPoint()">
+
+<section class="body">
+
+<div id="wrapper" class="container">
+    <ul class="nav nav-pills" role="tablist">
+        <li><a href="studentGrades.html" >Part 1</a></li>
+        <li><a href="salesman.html " >Part 2</a></li>
+        <li><a href="creditStore.html" >Part 3</a></li>
+        <li><a href="palindrome.html" >Part 4</a></li>
+        <li><a href="temperature.html" >Part 5</a></li>
+        <li><a href="multiply.html" >Part 6</a></li>
+        <li class="active"><a href="craps.html" >Extra Credit</a></li>
+    </ul>
+</div>
+
+<br><br>
+<br><br>
+
+
+<div id="result">
+    <h1>Craps!</h1>
+    <br><br>
+    <form name="myform">
+        <table>
+            <tr>
+                <td>Die 1</td>
+                <td><input type="text" id="die1" size="10"></td>
+            </tr>
+            <tr>
+                <td>Die 2</td>
+                <td><input type="text" id="die2" size="10"></td>
+            </tr>
+            <tr>
+                <td>Sum</td>
+                <td><input type="text" id="sum" size="10"></td>
+            </tr>
+            <tr>
+                <td>Point</td>
+                <td><input type="text" id="pnt" size="10"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><div id="guide"></div></td>
+            </tr>
+            <tr>
+                <td><input type="button" class="btn btn-primary" onclick="game()" value="Roll Dice!"></td>
+                <td></td>
+            </tr>
+        </table>
+    </form>
+    <br><br>
+</div>
+</section>
+</body>
+</html>

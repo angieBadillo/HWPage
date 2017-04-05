@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Temperature</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <script>
+        function validInput(input){
+            if (isNaN(input)){
+                return true;
+            }
+        }
+
+        function convToFah(){
+            var cel, fah;
+            cel = parseInt(document.getElementById("num1").value);
+            if(validInput(cel)){
+                document.getElementById("error").innerHTML = ("Please input a numeric value.");
+            }
+            else{
+                fah = (9/5 * cel) + 32;
+                fah = Math.round(fah * 100) / 100;
+                document.getElementById("fahtemp").value = (fah);
+            }
+        }
+
+        function convToCel(){
+            var cel, fah;
+            fah = parseInt(document.getElementById("num2").value);
+            if(validInput(fah)){
+                document.getElementById("error").innerHTML = ("Please input a numeric value.");
+            }
+            else{
+                cel = 5/9 * (fah - 32);
+                cel = Math.round(cel * 100) / 100;
+                document.getElementById("celtemp").value = (cel);
+            }
+        }
+    </script>
+    <style>
+
+        body {background-color: rgba(218, 218, 196, 0.04);}
+
+        .body { width: 580px;
+            margin: 0px auto;
+
+        }
+
+        input {text-align: left;}
+
+        textarea {
+            padding: 5px;
+            overflow: auto;
+            border: double;
+            color: rgba(18, 56, 33, 0.99);
+        }
+
+        table {width: 580px;}
+
+    </style>
+
+</head>
+<body onload="document.getElementById('num0').focus();">
+
+<section class="body">
+
+    <div id="wrapper" class="container">
+        <ul class="nav nav-pills" role="tablist">
+            <li><a href="studentGrades.html" >Part 1</a></li>
+            <li><a href="salesman.html " >Part 2</a></li>
+            <li><a href="creditStore.html" >Part 3</a></li>
+            <li><a href="palindrome.html" >Part 4</a></li>
+            <li class="active"><a href="temperature.html" >Part 5</a></li>
+            <li><a href="multiply.html" >Part 6</a></li>
+            <li><a href="craps.html" >Extra Credit</a></li>
+        </ul>
+    </div>
+
+    <br><br>
+    <br><br>
+
+
+    <div>
+        <br><br>
+        <form class="form-inline">
+            <table>
+                <tr>
+                    <td colspan="5"></td>
+                </tr>
+                <tr>
+                    <td>Celsius = </td>
+                    <td><input type="text" id="num1" size="10"></td>
+                    <td>Fahrenheit = </td>
+                    <td><input type="text" id="fahtemp"  size="10"></td>
+
+                    <td>
+                        <input type="button" class="btn btn-primary" onclick="convToFah()" value="Submit">
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <form class="form-inline">
+            <table>
+                <tr>
+                    <td colspan="5"></td>
+                </tr>
+                <tr>
+                    <td>Fahrenheit = </td>
+                    <td><input type="text" id="num2" size="10"></td>
+                    <td>Celsius = </td>
+                    <td><input type="text" id="celtemp" size="10"></td>
+
+                    <td>
+                        <input type="button" class="btn btn-primary" onclick="convToCel()" value="Submit">
+                    </td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td><div id="error" ></div></td>
+                </tr>
+            </table>
+        </form>
+        <br><br>
+    </div>
+    </div>
+</body>
+</html>

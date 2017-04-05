@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Store Credit</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <script>
+
+        function validInput(numinput){
+            if (isNaN(numinput) || numinput < 0){
+                return true;
+            }
+        }
+
+        function creditstatus(value){
+            var status;
+            if(value < 0)
+                status = "Credit limit exceeded by " + Math.abs(value);
+            else if(value >= 0)
+                status = "Credit available is: " + value;
+            return status;
+        }
+
+
+
+        function credit(){
+            var acctnum, creditlimit, initialbalance, totalitems, totalcredits, totalclient, creditavailable;
+            acctnum = parseInt(document.getElementById("num1").value);
+            creditlimit = parseInt(document.getElementById("num2").value);
+            initialbalance = parseInt(document.getElementById("num3").value);
+            totalitems = parseInt(document.getElementById("num4").value);
+            totalcredits = parseInt(document.getElementById("num5").value);
+
+            if(validInput(acctnum) || validInput(creditlimit) || validInput(initialbalance) || validInput(totalitems)
+                || validInput(totalcredits)){
+
+                document.getElementById("error").innerHTML = ("Type a valid number.");
+            }
+            else{
+                totalclient = (initialbalance + totalitems) - totalcredits;
+                creditavailable = creditlimit - totalclient;
+                document.getElementById("results").value =
+                    ("Credit Account Summary Account Number: " + acctnum +
+                    "\nCredit Limit: " + creditlimit +
+                    "\nBalance at beginning of month: " + initialbalance +
+                    "\nTotal amount charged this month: " + totalitems +
+                    "\nTotal amount of credits this month: " + totalcredits +
+                    "\n\n\tSummary\n\tThe new balance is: \t" + totalclient +
+                    "\n\t" + creditstatus(creditavailable));
+            }
+        }
+
+        $(function(){
+            $("#change").click(function(){
+                $("#results").css({
+                    "background-color":"#000000",
+                    "color":"#FFF",
+                    "font-weight":"900"
+                });
+            });
+        });
+
+
+
+    </script>
+    <style>
+
+        body {background-color: rgba(218, 218, 196, 0.04);}
+
+        .body { width: 580px;
+            margin: 0px auto;
+
+        }
+
+        input {text-align: left;}
+
+        textarea {
+            overflow: auto;
+            border: double;
+            color: rgba(3, 15, 56, 0.99);
+        }
+
+        table {width: 580px;}
+
+    </style>
+
+
+</head>
+
+<body onload="document.getElementById('num0').focus();">
+
+<section class="body">
+
+    <div id="wrapper" class="container">
+        <ul class="nav nav-pills" role="tablist">
+            <li><a href="studentGrades.html" >Part 1</a></li>
+            <li><a href="salesman.html " >Part 2</a></li>
+            <li class = "active"><a href="creditStore.html" >Part 3</a></li>
+            <li><a href="palindrome.html" >Part 4</a></li>
+            <li><a href="temperature.html" >Part 5</a></li>
+            <li><a href="multiply.html" >Part 6</a></li>
+            <li><a href="craps.html" >Extra Credit</a></li>
+         </ul>
+    </div>
+
+    <br><br>
+    <br><br>
+
+    <div id="Summary">
+
+        <h1>Credit Account Summary</h1>
+
+        <br><br>
+        <br><br>
+
+        <form id="myform" name="myform">
+
+            <table class="credit">
+
+                <tr>
+                    <td>Account number: </td>
+                    <td><input type="text" id="num1"  size="30"></td>
+                </tr>
+                <tr>
+                    <td>Credit Limit: </td>
+                    <td><input type="text" id="num2"  size="30"></td>
+                </tr>
+                <tr>
+                    <td>Balance at the beginning of the month: </td>
+                    <td><input type="text" id="num3"  size="30"></td>
+                </tr>
+                <tr>
+                    <td>Total amount charged this month: </td>
+                    <td><input type="text" id="num4"  size="30"></td>
+                </tr>
+                <tr>
+                    <td>Total amount of credits this month: </td>
+                    <td><input type="text" id="num5"  size="30"></td>
+                </tr>
+                <tr>
+                    <td><div id="error"></div></td>
+                </tr>
+                <tr>
+                    <td>Summary</td>
+                    <td><textarea id="results" rows="15" cols="50"></textarea></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+
+                        <input type="button" onclick="credit()" value="Submit">
+                        <input type="reset" value="RESET" onclick="document.getElementById('num0').focus();"><br><br>
+                        <button type="button" id="change">Let's switch colors!</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</section>
+</body>
+</html>
